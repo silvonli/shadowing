@@ -3,7 +3,7 @@
     <entity name="Lesson" representedClassName="Lesson" syncable="YES">
         <attribute name="order" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="sentences" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Sentence" inverseName="witchOfLesson" inverseEntity="Sentence" syncable="YES"/>
+        <relationship name="sentences" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Sentence" inverseName="witchOfLesson" inverseEntity="Sentence" syncable="YES"/>
     </entity>
     <entity name="Sentence" representedClassName="Sentence" syncable="YES">
         <attribute name="beginTime" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>

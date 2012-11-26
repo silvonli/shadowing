@@ -1,9 +1,9 @@
 //
 //  Lesson.h
-//  newCenceptRepeater
+//  shadowing
 //
-//  Created by silvon on 12-11-21.
-//
+//  Created by silvon on 12-11-23.
+//  Copyright (c) 2012年 silvon. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -13,8 +13,8 @@
 
 @interface Lesson : NSManagedObject
 
-@property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSNumber * order;
+@property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSSet *sentences;
 @end
 

@@ -1,9 +1,9 @@
 //
 //  Sentence.h
-//  newCenceptRepeater
+//  shadowing
 //
-//  Created by silvon on 12-11-21.
-//
+//  Created by silvon on 12-11-23.
+//  Copyright (c) 2012年 silvon. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -15,8 +15,8 @@
 
 @property (nonatomic, retain) NSNumber * beginTime;
 @property (nonatomic, retain) NSNumber * endTime;
-@property (nonatomic, retain) NSString * textContent;
 @property (nonatomic, retain) NSNumber * order;
+@property (nonatomic, retain) NSString * textContent;
 @property (nonatomic, retain) Lesson *witchOfLesson;
 
 @end
