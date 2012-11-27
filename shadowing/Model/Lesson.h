@@ -2,7 +2,7 @@
 //  Lesson.h
 //  shadowing
 //
-//  Created by silvon on 12-11-23.
+//  Created by silvon on 12-11-26.
 //  Copyright (c) 2012年 silvon. All rights reserved.
 //
 
@@ -13,8 +13,8 @@
 
 @interface Lesson : NSManagedObject
 
-@property (nonatomic, retain) NSNumber * order;
 @property (nonatomic, retain) NSString * title;
+@property (nonatomic, retain) NSData * mp3;
 @property (nonatomic, retain) NSSet *sentences;
 @end
 

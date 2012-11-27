@@ -1,23 +1,18 @@
 //
-//  LessonListTableViewController.m
+//  LessonDetailTableViewController.m
 //  shadowing
 //
-//  Created by silvon on 12-11-23.
+//  Created by silvon on 12-11-27.
 //  Copyright (c) 2012年 silvon. All rights reserved.
 //
 
-#import "LessonListTableViewController.h"
-#import "Sentence.h"
-#import "Lesson.h"
+#import "LessonDetailTableViewController.h"
 
-@interface LessonListTableViewController ()
+@interface LessonDetailTableViewController ()
 
 @end
 
-@implementation LessonListTableViewController
-
-@synthesize managedObjectContext = _managedObjectContext;
-@synthesize arrLensons = _arrLensons;
+@implementation LessonDetailTableViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -37,12 +32,6 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    self.title = @"跟读材料";
-    NSFetchRequest *fetchRequest = [[ NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Lesson" inManagedObjectContext: self.managedObjectContext];
-    [fetchRequest setEntity:entity];
-    NSError *error;
-    self.arrLensons = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
 }
 
 - (void)didReceiveMemoryWarning
@@ -55,27 +44,25 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-
+#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 1;
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-
+#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return [self.arrLensons count];
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-
     // Configure the cell...
-    Lesson *len = [self.arrLensons objectAtIndex:indexPath.row];
-    cell.textLabel.text = len.title;
+    
     return cell;
 }
 

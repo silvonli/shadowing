@@ -2,7 +2,7 @@
 //  Sentence.m
 //  shadowing
 //
-//  Created by silvon on 12-11-23.
+//  Created by silvon on 12-11-26.
 //  Copyright (c) 2012年 silvon. All rights reserved.
 //
 
@@ -14,7 +14,6 @@
 
 @dynamic beginTime;
 @dynamic endTime;
-@dynamic order;
 @dynamic textContent;
 @dynamic witchOfLesson;
 

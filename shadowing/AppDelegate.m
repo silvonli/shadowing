@@ -7,8 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "Sentence.h"
-#import "Lesson.h"
 #import "LessonListTableViewController.h"
 @implementation AppDelegate
 
@@ -19,9 +17,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    //[self createDataFile];
 
-    LessonListTableViewController *lessonListView = (LessonListTableViewController*)self.window.rootViewController;
+    UINavigationController *nav = (UINavigationController*)self.window.rootViewController;
+   
+    LessonListTableViewController *lessonListView = (LessonListTableViewController*)[nav.viewControllers objectAtIndex:0];
     lessonListView.managedObjectContext = self.managedObjectContext;
     return YES;
 }
@@ -114,40 +113,6 @@
     }
     
     return _persistentStoreCoordinator;
-}
-- (void) createDataFile
-{
-    NSError *error;
-    NSURL* sqliteURL= [NSURL fileURLWithPath:@"/Users/sumomoxiaowen/Dev/MyCode/shadowing/shadowing/data.sqlite3"];
-  
-    NSManagedObjectModel * ModelTem = [self managedObjectModel];
-    
-    NSPersistentStoreCoordinator *coordinatorTem = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: ModelTem];
-    [coordinatorTem addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:sqliteURL options:nil error:&error];
-    
-    NSManagedObjectContext *contextTem = [NSManagedObjectContext new];
-    [contextTem setPersistentStoreCoordinator: coordinatorTem];
-   
-   
-    
-    Lesson *len = [NSEntityDescription insertNewObjectForEntityForName:@"Lesson" inManagedObjectContext:contextTem];
-    len.title   = @"lenson one";
-    len.order   = [NSNumber numberWithInt:1];
-    
-    Sentence *sen = [NSEntityDescription insertNewObjectForEntityForName:@"Sentence" inManagedObjectContext:contextTem];
-    sen.beginTime = [NSNumber numberWithFloat:0];
-    sen.endTime   = [NSNumber numberWithFloat:10];
-    sen.order     = [NSNumber numberWithInt:1];
-    sen.textContent   = @"fucking ";
-    sen.witchOfLesson = len;
-    
-    len.sentences = [NSSet setWithObjects: sen, nil];
- 
-    if (![contextTem save:&error])
-    {
-        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-    }
-
 }
 
 @end
