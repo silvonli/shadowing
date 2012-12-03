@@ -7,22 +7,24 @@
 //
 
 #import "LessonListTableViewController.h"
-#import "Sentence.h"
-#import "Lesson.h"
 
+#import "AppDelegate.h"
 @interface LessonListTableViewController ()
 
 @end
 
 @implementation LessonListTableViewController
 
+@synthesize delegate = _delegate;
 @synthesize managedObjectContext = _managedObjectContext;
-@synthesize arrLensons = _arrLensons;
+@synthesize lessonsArray = _lessonsArray;
+@synthesize selLesson = _selLesson;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
-    if (self) {
+    if (self)
+    {
         // Custom initialization
     }
     return self;
@@ -32,17 +34,33 @@
 {
     [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
     self.title = @"跟读材料";
-    NSFetchRequest *fetchRequest = [[ NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Lesson" inManagedObjectContext: self.managedObjectContext];
-    [fetchRequest setEntity:entity];
-    NSError *error;
-    self.arrLensons = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+
+}
+
+- (NSManagedObjectContext*) managedObjectContext
+{
+    if (_managedObjectContext == nil)
+    {
+        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        _managedObjectContext = appDelegate.managedObjectContext;
+    }
+     return _managedObjectContext;
+}
+
+- (NSArray *) lessonsArray
+{
+    if (_lessonsArray == nil)
+    {
+        NSFetchRequest *fetchRequest = [[ NSFetchRequest alloc] init];
+        NSEntityDescription *entity  = [NSEntityDescription entityForName:@"Lesson"
+                                                   inManagedObjectContext:self.managedObjectContext];
+        [fetchRequest setEntity:entity];
+        _lessonsArray = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    }
+    
+    return _lessonsArray;
 }
 
 - (void)didReceiveMemoryWarning
@@ -55,16 +73,13 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-
-    // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 
-    // Return the number of rows in the section.
-    return [self.arrLensons count];
+    return [self.lessonsArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -73,62 +88,26 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
-    // Configure the cell...
-    Lesson *len = [self.arrLensons objectAtIndex:indexPath.row];
-    cell.textLabel.text = len.title;
+    Lesson *len = [self.lessonsArray objectAtIndex:indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"%d: %@", indexPath.row+1, len.title];
+    
+    if ([self.selLesson isEqual:len])
+    {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
+
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    //[[tableView cellForRowAtIndexPath:indexPath] setAccessoryType:UITableViewCellAccessoryCheckmark];
+    self.selLesson = [self.lessonsArray objectAtIndex:indexPath.row];
+    [self.delegate didSelectLensson];
 }
 
 @end

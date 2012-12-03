@@ -7,9 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Sentence.h"
+#import "Lesson.h"
+
+@protocol LessonListTableViewControllerDelegate <NSObject>
+- (void) didSelectLensson;
+@end
 
 @interface LessonListTableViewController : UITableViewController
 
-@property(nonatomic, strong) NSManagedObjectContext * managedObjectContext;
-@property(nonatomic, strong) NSArray * arrLensons;
+@property(nonatomic, strong) id<LessonListTableViewControllerDelegate> delegate;
+@property(nonatomic, strong, readonly) NSManagedObjectContext * managedObjectContext;
+@property(nonatomic, strong, readonly) NSArray * lessonsArray;
+@property(nonatomic, strong) Lesson* selLesson;
 @end

@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "LessonListTableViewController.h"
 @implementation AppDelegate
 
 @synthesize managedObjectModel = _managedObjectModel;
@@ -18,10 +17,7 @@
 {
     // Override point for customization after application launch.
 
-    UINavigationController *nav = (UINavigationController*)self.window.rootViewController;
-   
-    LessonListTableViewController *lessonListView = (LessonListTableViewController*)[nav.viewControllers objectAtIndex:0];
-    lessonListView.managedObjectContext = self.managedObjectContext;
+
     return YES;
 }
 	
