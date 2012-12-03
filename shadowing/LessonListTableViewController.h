@@ -10,13 +10,15 @@
 #import "Sentence.h"
 #import "Lesson.h"
 
+@class LessonListTableViewController;
+
 @protocol LessonListTableViewControllerDelegate <NSObject>
-- (void) didSelectLensson;
+- (void) didSelectLenssonInLessonList:(LessonListTableViewController*)listTVCtler;
 @end
 
 @interface LessonListTableViewController : UITableViewController
 
-@property(nonatomic, strong) id<LessonListTableViewControllerDelegate> delegate;
+@property(nonatomic, weak) id<LessonListTableViewControllerDelegate> delegate;
 @property(nonatomic, strong, readonly) NSManagedObjectContext * managedObjectContext;
 @property(nonatomic, strong, readonly) NSArray * lessonsArray;
 @property(nonatomic, strong) Lesson* selLesson;

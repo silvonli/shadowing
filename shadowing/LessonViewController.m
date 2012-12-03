@@ -34,16 +34,24 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-   
-    NSFetchRequest *fetchRequest = [[ NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Lesson" inManagedObjectContext: appDelegate.managedObjectContext];
-    [fetchRequest setEntity:entity];
     
-    NSArray * arrLensons = [appDelegate.managedObjectContext executeFetchRequest:fetchRequest error:nil];
-    self.currenLesson = [arrLensons objectAtIndex:0];
-    
-    [self textLayout];
+    [self lessonViewDisplay];
+}
+- (Lesson*) currenLesson
+{
+    if (_currenLesson == nil)
+    {
+        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        
+        NSFetchRequest *fetchRequest = [[ NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Lesson" inManagedObjectContext: appDelegate.managedObjectContext];
+        [fetchRequest setEntity:entity];
+        
+        NSArray * lensons = [appDelegate.managedObjectContext executeFetchRequest:fetchRequest error:nil];
+        _currenLesson = [lensons objectAtIndex:0];
+    }
+
+    return _currenLesson;
 }
 
 - (void)didReceiveMemoryWarning
@@ -63,14 +71,14 @@
     [self.lessonsPopover presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
 
-- (void) didSelectLensson
+- (void) didSelectLenssonInLessonList:(LessonListTableViewController*)listTVCtler
 {
+    self.currenLesson = [listTVCtler selLesson];
     [self.lessonsPopover dismissPopoverAnimated:YES];
-    self.currenLesson = [(LessonListTableViewController*)self.lessonsPopover.contentViewController selLesson];
-    [self textLayout];
+    [self lessonViewDisplay];
 }
 
-- (void) textLayout
+- (void) lessonViewDisplay
 {
     NSMutableAttributedString* attString = [[NSMutableAttributedString alloc] init];
     // 句子按时间排序

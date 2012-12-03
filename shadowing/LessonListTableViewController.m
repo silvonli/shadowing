@@ -34,9 +34,7 @@
 {
     [super viewDidLoad];
 
-
     self.title = @"跟读材料";
-
 }
 
 - (NSManagedObjectContext*) managedObjectContext
@@ -78,7 +76,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-
     return [self.lessonsArray count];
 }
 
@@ -100,14 +97,13 @@
 }
 
 
-
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //[[tableView cellForRowAtIndexPath:indexPath] setAccessoryType:UITableViewCellAccessoryCheckmark];
     self.selLesson = [self.lessonsArray objectAtIndex:indexPath.row];
-    [self.delegate didSelectLensson];
+    [self.delegate didSelectLenssonInLessonList:self];
 }
 
 @end
