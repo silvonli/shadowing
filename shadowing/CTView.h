@@ -10,5 +10,9 @@
 #import <CoreText/CoreText.h>
 
 @interface CTView : UIView
-@property(nonatomic, strong)  NSAttributedString* attString;
+
+
+- (void) refreshWithArrstring:(NSAttributedString *) string;
+- (void) refreshWithArrstring:(NSAttributedString *) string andImage:(UIImage*)img;
+
 @end

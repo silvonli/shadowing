@@ -7,15 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Lesson.h"
-#import "Sentence.h"
-#import "LessonListTableViewController.h"
+
 #import "CTView.h"
+#import "LessonListTableViewController.h"
+#import "Lesson.h"
+#import <AVFoundation/AVAudioPlayer.h>
 
 @interface LessonViewController : UIViewController <LessonListTableViewControllerDelegate>
+{
+    NSTimer * _timer;
+}
 
-@property (weak, nonatomic) IBOutlet CTView *currenLessonView;
+@property (nonatomic, weak  ) IBOutlet CTView *currenLessonView;
+@property (nonatomic, strong) UIPopoverController *lessonsPopover;
+@property (nonatomic, strong) Lesson* currenLesson;
+@property (nonatomic, strong) AVAudioPlayer *audioPlayer;
 
-@property(nonatomic, strong) UIPopoverController *lessonsPopover;
-@property(nonatomic, strong) Lesson* currenLesson;
 @end

@@ -18,7 +18,7 @@
 @synthesize delegate = _delegate;
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize lessonsArray = _lessonsArray;
-@synthesize selLesson = _selLesson;
+@synthesize selectedLesson = _selLesson;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -35,6 +35,7 @@
     [super viewDidLoad];
 
     self.title = @"跟读材料";
+    self.contentSizeForViewInPopover = CGSizeMake(200, 300);
 }
 
 - (NSManagedObjectContext*) managedObjectContext
@@ -67,6 +68,14 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewDidUnload
+{
+    self.selectedLesson = nil;
+    self.lessonsArray = nil;
+    self.managedObjectContext = nil;
+    [super viewDidUnload];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -88,9 +97,13 @@
     Lesson *len = [self.lessonsArray objectAtIndex:indexPath.row];
     cell.textLabel.text = [NSString stringWithFormat:@"%d: %@", indexPath.row+1, len.title];
     
-    if ([self.selLesson isEqual:len])
+    if ([self.selectedLesson isEqual:len])
     {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
+    else
+    {
+        cell.accessoryType = UITableViewCellAccessoryNone;
     }
 
     return cell;
@@ -102,8 +115,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //[[tableView cellForRowAtIndexPath:indexPath] setAccessoryType:UITableViewCellAccessoryCheckmark];
-    self.selLesson = [self.lessonsArray objectAtIndex:indexPath.row];
-    [self.delegate didSelectLenssonInLessonList:self];
+    self.selectedLesson = [self.lessonsArray objectAtIndex:indexPath.row];
+    [self.delegate lessonListController:self didSelectLensson:self.selectedLesson];
+    [self.tableView reloadData];
 }
 
 @end

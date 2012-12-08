@@ -13,13 +13,13 @@
 @class LessonListTableViewController;
 
 @protocol LessonListTableViewControllerDelegate <NSObject>
-- (void) didSelectLenssonInLessonList:(LessonListTableViewController*)listTVCtler;
+- (void) lessonListController:(LessonListTableViewController*)listTVCtler didSelectLensson:(Lesson*)selectedLesson;
 @end
 
 @interface LessonListTableViewController : UITableViewController
 
 @property(nonatomic, weak) id<LessonListTableViewControllerDelegate> delegate;
-@property(nonatomic, strong, readonly) NSManagedObjectContext * managedObjectContext;
-@property(nonatomic, strong, readonly) NSArray * lessonsArray;
-@property(nonatomic, strong) Lesson* selLesson;
+@property(nonatomic, strong) NSManagedObjectContext * managedObjectContext;
+@property(nonatomic, strong) NSArray * lessonsArray;
+@property(nonatomic, strong) Lesson* selectedLesson;
 @end

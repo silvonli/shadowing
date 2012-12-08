@@ -8,7 +8,7 @@
 
 #import "Sentence.h"
 #import "Lesson.h"
-
+#import "../layoutConstant.h"
 
 @implementation Sentence
 
@@ -16,5 +16,5 @@
 @dynamic endTime;
 @dynamic textContent;
 @dynamic witchOfLesson;
-
+@synthesize bSel = _bSel;
 @end

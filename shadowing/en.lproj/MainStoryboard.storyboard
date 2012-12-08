@@ -53,13 +53,22 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="S8p-oZ-3yX">
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <items>
                                     <barButtonItem title="Item" id="9kA-G9-17w">
+                                        <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <action selector="lessonsListButton:" destination="LnE-GX-0v4" id="Ing-sY-VkY"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem width="615" style="plain" systemItem="fixedSpace" id="bbh-is-9Gi"/>
+                                    <barButtonItem title="Item" id="S8F-3P-p1V">
+                                        <connections>
+                                            <action selector="play:" destination="LnE-GX-0v4" id="0ye-Ib-ebR"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </toolbar>
                             <view contentMode="scaleToFill" id="4JA-gp-4d1" customClass="CTView">
                                 <rect key="frame" x="0.0" y="44" width="768" height="960"/>
@@ -78,21 +87,6 @@
             <point key="canvasLocation" x="-182" y="1290"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="CTView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CTView.h"/>
-        </class>
-        <class className="LessonListTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LessonListTableViewController.h"/>
-        </class>
-        <class className="LessonViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LessonViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="lessonsListButton:"/>
-                <relationship kind="outlet" name="currenLessonView" candidateClass="CTView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

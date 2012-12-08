@@ -16,6 +16,10 @@
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSData * mp3;
 @property (nonatomic, retain) NSSet *sentences;
+@property (nonatomic, retain) NSString * notes;
+@property (nonatomic, retain) NSString * translation;
+@property (nonatomic, retain) NSData * img;
+
 @end
 
 @interface Lesson (CoreDataGeneratedAccessors)
@@ -25,4 +29,12 @@
 - (void)addSentences:(NSSet *)values;
 - (void)removeSentences:(NSSet *)values;
 
+- (NSMutableAttributedString *) getAttributedTitle;
+- (NSMutableAttributedString *) getAttributedSentences;
+- (NSMutableAttributedString *) getAttributedNotes;
+- (NSMutableAttributedString *) getAttributedTranslation;
+- (NSMutableAttributedString *) getAttributedString;
+- (void) setSelectedSentence: (NSInteger) index;
+- (NSNumber*)getSelectedSentencesBeginTime;
+- (NSNumber*)getSelectedSentencesEndTime;
 @end

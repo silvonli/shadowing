@@ -17,5 +17,6 @@
 @property (nonatomic, retain) NSNumber * endTime;
 @property (nonatomic, retain) NSString * textContent;
 @property (nonatomic, retain) Lesson *witchOfLesson;
+@property (nonatomic, assign) BOOL bSel;
 
 @end

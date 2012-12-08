@@ -8,7 +8,7 @@
 
 #import "LessonViewController.h"
 #import "AppDelegate.h"
-
+//#import "stdlib.h"
 
 @interface LessonViewController ()
 
@@ -18,6 +18,7 @@
 
 @synthesize lessonsPopover = _lessonsPopover;
 @synthesize currenLesson   = _currenLesson;
+@synthesize audioPlayer    = _audioPlayer;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,25 +34,45 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
-    
+    // 当前课文 初始化为第一课
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSFetchRequest *fetchRequest = [[ NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Lesson" inManagedObjectContext: appDelegate.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    NSArray * lensons = [appDelegate.managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    self.currenLesson = [lensons objectAtIndex:0];
+ 
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(refreshCurrenLessonViewString:)
+                                                 name:NSManagedObjectContextObjectsDidChangeNotification
+                                               object:appDelegate.managedObjectContext];
+
+    // 显示课文
     [self lessonViewDisplay];
 }
-- (Lesson*) currenLesson
-{
-    if (_currenLesson == nil)
-    {
-        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-        
-        NSFetchRequest *fetchRequest = [[ NSFetchRequest alloc] init];
-        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Lesson" inManagedObjectContext: appDelegate.managedObjectContext];
-        [fetchRequest setEntity:entity];
-        
-        NSArray * lensons = [appDelegate.managedObjectContext executeFetchRequest:fetchRequest error:nil];
-        _currenLesson = [lensons objectAtIndex:0];
-    }
 
-    return _currenLesson;
+// 重载getter,延迟初始化
+- (UIPopoverController *)lessonsPopover
+{
+    if (_lessonsPopover == nil)
+    {
+        LessonListTableViewController *listTVCtler = [self.storyboard instantiateViewControllerWithIdentifier:@"list"];
+        listTVCtler.selectedLesson = self.currenLesson;
+        listTVCtler.delegate  = self;
+        
+        UINavigationController *nar = [[UINavigationController alloc] initWithRootViewController:listTVCtler];
+        _lessonsPopover = [[UIPopoverController alloc] initWithContentViewController:nar];
+    }
+    return _lessonsPopover;
+}
+
+// 重载当前课程setter,
+- (void)setCurrenLesson:(Lesson *)len
+{
+    _currenLesson = len;
+    self.audioPlayer = [ [AVAudioPlayer alloc] initWithData: self.currenLesson.mp3 error:NULL];
+    [self.audioPlayer prepareToPlay];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -62,41 +83,72 @@
 
 - (IBAction)lessonsListButton:(id)sender
 {
-    LessonListTableViewController *listTVCtler = [self.storyboard instantiateViewControllerWithIdentifier:@"list"];
-    listTVCtler.contentSizeForViewInPopover = CGSizeMake(200, 400);
-    listTVCtler.selLesson = self.currenLesson;
-    listTVCtler.delegate  = self;
+    [self.lessonsPopover dismissPopoverAnimated:NO];
+    [self.lessonsPopover presentPopoverFromBarButtonItem:sender
+                                permittedArrowDirections:UIPopoverArrowDirectionAny
+                                                animated:YES];
+}
+-(void)refreshCurrenLessonViewString:(NSNotification *) notification
+{
+    [self.currenLessonView refreshWithArrstring:[self.currenLesson getAttributedString]];
+}
+- (IBAction)play:(id)sender
+{
+    int nR = arc4random_uniform(17);
+   
+    [self.currenLesson setSelectedSentence:nR];
+  
     
-    self.lessonsPopover = [[UIPopoverController alloc] initWithContentViewController:listTVCtler];
-    [self.lessonsPopover presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+   
+ 
+    
+    
+    
+        
+   
+    
+    NSMethodSignature *sgt = [ [self.audioPlayer class] instanceMethodSignatureForSelector:@selector(setCurrentTime:)];
+    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature: sgt];
+    [invocation setTarget: self.audioPlayer];
+    [invocation setSelector:@selector(setCurrentTime:)];
+   
+    NSNumber *beg = [self.currenLesson getSelectedSentencesBeginTime];
+    NSNumber *end = [self.currenLesson getSelectedSentencesEndTime];
+    NSTimeInterval argument = [beg floatValue];
+    [invocation setArgument:&argument atIndex:2];
+  
+    [_timer invalidate];
+    _timer = [NSTimer scheduledTimerWithTimeInterval: [end floatValue]-[beg floatValue]
+                                          invocation: invocation
+                                             repeats: YES];
+    [_timer fire];
+    if (self.audioPlayer.playing == NO)
+    {
+        [self.audioPlayer play];
+    }
+    
 }
 
-- (void) didSelectLenssonInLessonList:(LessonListTableViewController*)listTVCtler
+- (void) lessonListController:(LessonListTableViewController*)listTVCtler didSelectLensson:(Lesson*)selectedLesson
 {
-    self.currenLesson = [listTVCtler selLesson];
+    self.currenLesson = selectedLesson;
     [self.lessonsPopover dismissPopoverAnimated:YES];
     [self lessonViewDisplay];
 }
 
 - (void) lessonViewDisplay
 {
-    NSMutableAttributedString* attString = [[NSMutableAttributedString alloc] init];
-    // 句子按时间排序
-    NSSortDescriptor *titleSort = [NSSortDescriptor sortDescriptorWithKey:@"beginTime" ascending:YES];
-    NSArray *sortedSens = [self.currenLesson.sentences sortedArrayUsingDescriptors:[NSArray arrayWithObject:titleSort]];
-    // 取句子文本内容
-    for (Sentence* sen in sortedSens)
-    {
-        NSAttributedString *sub = [[NSAttributedString alloc] initWithString:sen.textContent];
-        [attString appendAttributedString:sub];
-    }
+    NSMutableAttributedString* attString = [self.currenLesson getAttributedString];
+    UIImage *img = [UIImage imageNamed:@"ill.png"];
     
-    self.currenLessonView.attString = attString;
+    [self.currenLessonView refreshWithArrstring:attString andImage:img];
     
-    [self.currenLessonView setNeedsDisplay];
+ //   [_currenLesson.sentences addObserver:self forKeyPath:@"bSel" options:NSKeyValueObservingOptionOld context:NULL];
 }
+
 - (void)viewDidUnload
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self setCurrenLessonView:nil];
     [self setCurrenLesson:nil];
     [self setLessonsPopover:nil];

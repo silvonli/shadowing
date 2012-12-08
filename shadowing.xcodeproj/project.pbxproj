@@ -26,6 +26,8 @@
 		B5857A25166A8A7300CB1D30 /* LessonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5857A24166A8A7300CB1D30 /* LessonViewController.m */; };
 		B5902F45166BF511000ACC0D /* CTView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5902F44166BF511000ACC0D /* CTView.m */; };
 		B5902F47166BF706000ACC0D /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5902F46166BF706000ACC0D /* CoreText.framework */; };
+		B5A6037A1670A4B800821ADB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5A603791670A4B800821ADB /* AVFoundation.framework */; };
+		B5E4C8A41670412900DEC677 /* ill.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E4C8A31670412900DEC677 /* ill.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +59,9 @@
 		B5902F43166BF511000ACC0D /* CTView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTView.h; sourceTree = "<group>"; };
 		B5902F44166BF511000ACC0D /* CTView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTView.m; sourceTree = "<group>"; };
 		B5902F46166BF706000ACC0D /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		B5902F60166EC044000ACC0D /* layoutConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = layoutConstant.h; sourceTree = "<group>"; };
+		B5A603791670A4B800821ADB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		B5E4C8A31670412900DEC677 /* ill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ill.png; path = ../../../../Desktop/ill.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5A6037A1670A4B800821ADB /* AVFoundation.framework in Frameworks */,
 				B5902F47166BF706000ACC0D /* CoreText.framework in Frameworks */,
 				B5596876165F60E6008EACD1 /* CoreData.framework in Frameworks */,
 				B5596846165F511F008EACD1 /* UIKit.framework in Frameworks */,
@@ -78,7 +84,6 @@
 		B5596836165F511F008EACD1 = {
 			isa = PBXGroup;
 			children = (
-				B5902F46166BF706000ACC0D /* CoreText.framework */,
 				B559684B165F511F008EACD1 /* shadowing */,
 				B5596844165F511F008EACD1 /* Frameworks */,
 				B5596842165F511F008EACD1 /* Products */,
@@ -96,6 +101,8 @@
 		B5596844165F511F008EACD1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B5A603791670A4B800821ADB /* AVFoundation.framework */,
+				B5902F46166BF706000ACC0D /* CoreText.framework */,
 				B5596875165F60E6008EACD1 /* CoreData.framework */,
 				B5596845165F511F008EACD1 /* UIKit.framework */,
 				B5596847165F511F008EACD1 /* Foundation.framework */,
@@ -107,6 +114,7 @@
 		B559684B165F511F008EACD1 /* shadowing */ = {
 			isa = PBXGroup;
 			children = (
+				B5E4C8A31670412900DEC677 /* ill.png */,
 				B5596868165F520A008EACD1 /* Model */,
 				B5596854165F511F008EACD1 /* AppDelegate.h */,
 				B5596855165F511F008EACD1 /* AppDelegate.m */,
@@ -116,6 +124,7 @@
 				B5596873165F56AA008EACD1 /* LessonListTableViewController.m */,
 				B5857A23166A8A7300CB1D30 /* LessonViewController.h */,
 				B5857A24166A8A7300CB1D30 /* LessonViewController.m */,
+				B5902F60166EC044000ACC0D /* layoutConstant.h */,
 				B5902F43166BF511000ACC0D /* CTView.h */,
 				B5902F44166BF511000ACC0D /* CTView.m */,
 			);
@@ -206,6 +215,7 @@
 				B559685C165F511F008EACD1 /* Default-568h@2x.png in Resources */,
 				B559685F165F511F008EACD1 /* MainStoryboard.storyboard in Resources */,
 				B55968D31663D983008EACD1 /* data.sqlite3 in Resources */,
+				B5E4C8A41670412900DEC677 /* ill.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
