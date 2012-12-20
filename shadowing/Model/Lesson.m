@@ -176,8 +176,8 @@
     };
     CTParagraphStyleRef aStyle = CTParagraphStyleCreate((const CTParagraphStyleSetting*) &paraStyles, 2);
     [attTranslation addAttribute: (NSString*)kCTParagraphStyleAttributeName
-                     value: (__bridge id)aStyle
-                     range: NSMakeRange(0, [attTranslation length])];
+                           value: (__bridge id)aStyle
+                           range: NSMakeRange(0, [attTranslation length])];
     CFRelease(aStyle);
     
     [str appendAttributedString:attTranslation];

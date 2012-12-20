@@ -13,11 +13,12 @@
 
 @interface Lesson : NSManagedObject
 
-@property (nonatomic, retain) NSData * mp3;
-@property (nonatomic, retain) NSString * title;
-@property (nonatomic, retain) NSString * notes;
-@property (nonatomic, retain) NSString * translation;
 @property (nonatomic, retain) NSData * img;
+@property (nonatomic, retain) NSData * mp3;
+@property (nonatomic, retain) NSString * notes;
+@property (nonatomic, retain) NSDate * timeStamp;
+@property (nonatomic, retain) NSString * title;
+@property (nonatomic, retain) NSString * translation;
 @property (nonatomic, retain) NSSet *sentences;
 @end
 

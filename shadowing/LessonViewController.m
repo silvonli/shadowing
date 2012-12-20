@@ -34,20 +34,23 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    // 当前课文 初始化为第一课
+    
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    
+    // 当前课 初始化
     NSFetchRequest *fetchRequest = [[ NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Lesson" inManagedObjectContext: appDelegate.managedObjectContext];
     [fetchRequest setEntity:entity];
     NSArray * lensons = [appDelegate.managedObjectContext executeFetchRequest:fetchRequest error:nil];
     self.currenLesson = [lensons objectAtIndex:0];
  
+    // 课文被改通知
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(refreshCurrenLessonViewString:)
                                                  name:NSManagedObjectContextObjectsDidChangeNotification
                                                object:appDelegate.managedObjectContext];
 
-    // 显示课文
+    // 显示
     [self lessonViewDisplay];
 }
 

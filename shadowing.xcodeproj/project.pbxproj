@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B51E42951682E7F50085C297 /* Lesson.m in Sources */ = {isa = PBXBuildFile; fileRef = B51E42941682E7F50085C297 /* Lesson.m */; };
 		B5596846165F511F008EACD1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5596845165F511F008EACD1 /* UIKit.framework */; };
 		B5596848165F511F008EACD1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5596847165F511F008EACD1 /* Foundation.framework */; };
 		B559684A165F511F008EACD1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5596849165F511F008EACD1 /* CoreGraphics.framework */; };
@@ -24,12 +25,13 @@
 		B5857A25166A8A7300CB1D30 /* LessonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5857A24166A8A7300CB1D30 /* LessonViewController.m */; };
 		B5902F45166BF511000ACC0D /* CTView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5902F44166BF511000ACC0D /* CTView.m */; };
 		B5902F47166BF706000ACC0D /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5902F46166BF706000ACC0D /* CoreText.framework */; };
-		B5A3C412168282F1009EEE77 /* Lesson.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A3C411168282F1009EEE77 /* Lesson.m */; };
 		B5A3C416168282F2009EEE77 /* Sentence.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A3C415168282F2009EEE77 /* Sentence.m */; };
 		B5A6037A1670A4B800821ADB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5A603791670A4B800821ADB /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B51E42931682E7F50085C297 /* Lesson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Lesson.h; path = Model/Lesson.h; sourceTree = "<group>"; };
+		B51E42941682E7F50085C297 /* Lesson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Lesson.m; path = Model/Lesson.m; sourceTree = "<group>"; };
 		B5596841165F511F008EACD1 /* shadowing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = shadowing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5596845165F511F008EACD1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B5596847165F511F008EACD1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -55,8 +57,6 @@
 		B5902F44166BF511000ACC0D /* CTView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTView.m; sourceTree = "<group>"; };
 		B5902F46166BF706000ACC0D /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		B5902F60166EC044000ACC0D /* layoutConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = layoutConstant.h; sourceTree = "<group>"; };
-		B5A3C410168282F1009EEE77 /* Lesson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Lesson.h; path = Model/Lesson.h; sourceTree = "<group>"; };
-		B5A3C411168282F1009EEE77 /* Lesson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Lesson.m; path = Model/Lesson.m; sourceTree = "<group>"; };
 		B5A3C414168282F2009EEE77 /* Sentence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Sentence.h; path = Model/Sentence.h; sourceTree = "<group>"; };
 		B5A3C415168282F2009EEE77 /* Sentence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Sentence.m; path = Model/Sentence.m; sourceTree = "<group>"; };
 		B5A603791670A4B800821ADB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -147,9 +147,9 @@
 			children = (
 				B5A3C414168282F2009EEE77 /* Sentence.h */,
 				B5A3C415168282F2009EEE77 /* Sentence.m */,
-				B5A3C410168282F1009EEE77 /* Lesson.h */,
-				B5A3C411168282F1009EEE77 /* Lesson.m */,
 				B55968CC1663D983008EACD1 /* data.sqlite3 */,
+				B51E42931682E7F50085C297 /* Lesson.h */,
+				B51E42941682E7F50085C297 /* Lesson.m */,
 				B55968CD1663D983008EACD1 /* data.xcdatamodeld */,
 			);
 			name = Model;
@@ -228,8 +228,8 @@
 				B55968D41663D983008EACD1 /* data.xcdatamodeld in Sources */,
 				B5857A25166A8A7300CB1D30 /* LessonViewController.m in Sources */,
 				B5902F45166BF511000ACC0D /* CTView.m in Sources */,
-				B5A3C412168282F1009EEE77 /* Lesson.m in Sources */,
 				B5A3C416168282F2009EEE77 /* Sentence.m in Sources */,
+				B51E42951682E7F50085C297 /* Lesson.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

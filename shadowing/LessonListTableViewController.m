@@ -63,8 +63,6 @@
         [fetchRequest setSortDescriptors:sortDescriptors];
         
         _lessonsArray = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
-        
-       // _lessonsArray = [[_lessonsArray reverseObjectEnumerator] allObjects];
     }
 
     return _lessonsArray;
@@ -103,7 +101,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
     Lesson *len = [self.lessonsArray objectAtIndex:indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%d: %@", indexPath.row+1, len.title];
+    cell.textLabel.text = [NSString stringWithFormat:@"%d  %@", indexPath.row+1, len.title];
     
     if ([self.selectedLesson isEqual:len])
     {
