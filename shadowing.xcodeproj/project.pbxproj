@@ -21,13 +21,12 @@
 		B5596876165F60E6008EACD1 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5596875165F60E6008EACD1 /* CoreData.framework */; };
 		B55968D31663D983008EACD1 /* data.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = B55968CC1663D983008EACD1 /* data.sqlite3 */; };
 		B55968D41663D983008EACD1 /* data.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B55968CD1663D983008EACD1 /* data.xcdatamodeld */; };
-		B55968D51663D983008EACD1 /* Lesson.m in Sources */ = {isa = PBXBuildFile; fileRef = B55968D01663D983008EACD1 /* Lesson.m */; };
-		B55968D61663D983008EACD1 /* Sentence.m in Sources */ = {isa = PBXBuildFile; fileRef = B55968D21663D983008EACD1 /* Sentence.m */; };
 		B5857A25166A8A7300CB1D30 /* LessonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5857A24166A8A7300CB1D30 /* LessonViewController.m */; };
 		B5902F45166BF511000ACC0D /* CTView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5902F44166BF511000ACC0D /* CTView.m */; };
 		B5902F47166BF706000ACC0D /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5902F46166BF706000ACC0D /* CoreText.framework */; };
+		B5A3C412168282F1009EEE77 /* Lesson.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A3C411168282F1009EEE77 /* Lesson.m */; };
+		B5A3C416168282F2009EEE77 /* Sentence.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A3C415168282F2009EEE77 /* Sentence.m */; };
 		B5A6037A1670A4B800821ADB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5A603791670A4B800821ADB /* AVFoundation.framework */; };
-		B5E4C8A41670412900DEC677 /* ill.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E4C8A31670412900DEC677 /* ill.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,18 +49,17 @@
 		B5596875165F60E6008EACD1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B55968CC1663D983008EACD1 /* data.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; name = data.sqlite3; path = Model/data.sqlite3; sourceTree = "<group>"; };
 		B55968CE1663D983008EACD1 /* data.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = data.xcdatamodel; sourceTree = "<group>"; };
-		B55968CF1663D983008EACD1 /* Lesson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Lesson.h; path = Model/Lesson.h; sourceTree = "<group>"; };
-		B55968D01663D983008EACD1 /* Lesson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Lesson.m; path = Model/Lesson.m; sourceTree = "<group>"; };
-		B55968D11663D983008EACD1 /* Sentence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Sentence.h; path = Model/Sentence.h; sourceTree = "<group>"; };
-		B55968D21663D983008EACD1 /* Sentence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Sentence.m; path = Model/Sentence.m; sourceTree = "<group>"; };
 		B5857A23166A8A7300CB1D30 /* LessonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LessonViewController.h; sourceTree = "<group>"; };
 		B5857A24166A8A7300CB1D30 /* LessonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LessonViewController.m; sourceTree = "<group>"; };
 		B5902F43166BF511000ACC0D /* CTView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTView.h; sourceTree = "<group>"; };
 		B5902F44166BF511000ACC0D /* CTView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTView.m; sourceTree = "<group>"; };
 		B5902F46166BF706000ACC0D /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		B5902F60166EC044000ACC0D /* layoutConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = layoutConstant.h; sourceTree = "<group>"; };
+		B5A3C410168282F1009EEE77 /* Lesson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Lesson.h; path = Model/Lesson.h; sourceTree = "<group>"; };
+		B5A3C411168282F1009EEE77 /* Lesson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Lesson.m; path = Model/Lesson.m; sourceTree = "<group>"; };
+		B5A3C414168282F2009EEE77 /* Sentence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Sentence.h; path = Model/Sentence.h; sourceTree = "<group>"; };
+		B5A3C415168282F2009EEE77 /* Sentence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Sentence.m; path = Model/Sentence.m; sourceTree = "<group>"; };
 		B5A603791670A4B800821ADB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		B5E4C8A31670412900DEC677 /* ill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ill.png; path = ../../../../Desktop/ill.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,7 +112,6 @@
 		B559684B165F511F008EACD1 /* shadowing */ = {
 			isa = PBXGroup;
 			children = (
-				B5E4C8A31670412900DEC677 /* ill.png */,
 				B5596868165F520A008EACD1 /* Model */,
 				B5596854165F511F008EACD1 /* AppDelegate.h */,
 				B5596855165F511F008EACD1 /* AppDelegate.m */,
@@ -148,12 +145,12 @@
 		B5596868165F520A008EACD1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B5A3C414168282F2009EEE77 /* Sentence.h */,
+				B5A3C415168282F2009EEE77 /* Sentence.m */,
+				B5A3C410168282F1009EEE77 /* Lesson.h */,
+				B5A3C411168282F1009EEE77 /* Lesson.m */,
 				B55968CC1663D983008EACD1 /* data.sqlite3 */,
 				B55968CD1663D983008EACD1 /* data.xcdatamodeld */,
-				B55968CF1663D983008EACD1 /* Lesson.h */,
-				B55968D01663D983008EACD1 /* Lesson.m */,
-				B55968D11663D983008EACD1 /* Sentence.h */,
-				B55968D21663D983008EACD1 /* Sentence.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -215,7 +212,6 @@
 				B559685C165F511F008EACD1 /* Default-568h@2x.png in Resources */,
 				B559685F165F511F008EACD1 /* MainStoryboard.storyboard in Resources */,
 				B55968D31663D983008EACD1 /* data.sqlite3 in Resources */,
-				B5E4C8A41670412900DEC677 /* ill.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,10 +226,10 @@
 				B5596856165F511F008EACD1 /* AppDelegate.m in Sources */,
 				B5596874165F56AA008EACD1 /* LessonListTableViewController.m in Sources */,
 				B55968D41663D983008EACD1 /* data.xcdatamodeld in Sources */,
-				B55968D51663D983008EACD1 /* Lesson.m in Sources */,
-				B55968D61663D983008EACD1 /* Sentence.m in Sources */,
 				B5857A25166A8A7300CB1D30 /* LessonViewController.m in Sources */,
 				B5902F45166BF511000ACC0D /* CTView.m in Sources */,
+				B5A3C412168282F1009EEE77 /* Lesson.m in Sources */,
+				B5A3C416168282F2009EEE77 /* Sentence.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -87,6 +87,22 @@
             <point key="canvasLocation" x="-182" y="1290"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="CTView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CTView.h"/>
+        </class>
+        <class className="LessonListTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LessonListTableViewController.h"/>
+        </class>
+        <class className="LessonViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LessonViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="lessonsListButton:"/>
+                <relationship kind="action" name="play:"/>
+                <relationship kind="outlet" name="currenLessonView" candidateClass="CTView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

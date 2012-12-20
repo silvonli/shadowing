@@ -85,8 +85,8 @@
 {
     [self.lessonsPopover dismissPopoverAnimated:NO];
     [self.lessonsPopover presentPopoverFromBarButtonItem:sender
-                                permittedArrowDirections:UIPopoverArrowDirectionAny
-                                                animated:YES];
+                         permittedArrowDirections:UIPopoverArrowDirectionAny
+                         animated:YES];
 }
 -(void)refreshCurrenLessonViewString:(NSNotification *) notification
 {
@@ -94,7 +94,7 @@
 }
 - (IBAction)play:(id)sender
 {
-    int nR = arc4random_uniform(17);
+    int nR = arc4random_uniform(8);
    
     [self.currenLesson setSelectedSentence:nR];
   
@@ -139,11 +139,15 @@
 - (void) lessonViewDisplay
 {
     NSMutableAttributedString* attString = [self.currenLesson getAttributedString];
-    UIImage *img = [UIImage imageNamed:@"ill.png"];
+    UIImage *img = [UIImage imageWithData:self.currenLesson.img];
     
     [self.currenLessonView refreshWithArrstring:attString andImage:img];
-    
- //   [_currenLesson.sentences addObserver:self forKeyPath:@"bSel" options:NSKeyValueObservingOptionOld context:NULL];
+ }
+
+-(BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    return toInterfaceOrientation == UIInterfaceOrientationPortrait ||
+           toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown;
 }
 
 - (void)viewDidUnload

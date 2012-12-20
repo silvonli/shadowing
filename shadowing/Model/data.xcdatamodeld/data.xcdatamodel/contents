@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1810" systemVersion="11G63" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Lesson" representedClassName="Lesson" syncable="YES">
+        <attribute name="img" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="mp3" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="timeStamp" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="translation" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="sentences" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Sentence" inverseName="witchOfLesson" inverseEntity="Sentence" syncable="YES"/>
     </entity>
     <entity name="Sentence" representedClassName="Sentence" syncable="YES">
-        <attribute name="beginTime" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="beginTime" optional="YES" attributeType="Boolean" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="bSel" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="endTime" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="textContent" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="witchOfLesson" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Lesson" inverseName="sentences" inverseEntity="Lesson" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Lesson" positionX="160" positionY="192" width="128" height="90"/>
-        <element name="Sentence" positionX="414" positionY="153" width="128" height="105"/>
+        <element name="Lesson" positionX="160" positionY="192" width="128" height="150"/>
+        <element name="Sentence" positionX="414" positionY="153" width="128" height="120"/>
     </elements>
 </model>

@@ -56,9 +56,17 @@
         NSEntityDescription *entity  = [NSEntityDescription entityForName:@"Lesson"
                                                    inManagedObjectContext:self.managedObjectContext];
         [fetchRequest setEntity:entity];
+        NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc]
+                                            initWithKey:@"timeStamp"
+                                            ascending:YES];
+        NSArray* sortDescriptors = [NSArray arrayWithObject: sortDescriptor];
+        [fetchRequest setSortDescriptors:sortDescriptors];
+        
         _lessonsArray = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
+        
+       // _lessonsArray = [[_lessonsArray reverseObjectEnumerator] allObjects];
     }
-    
+
     return _lessonsArray;
 }
 

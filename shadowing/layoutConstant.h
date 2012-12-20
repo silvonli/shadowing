@@ -26,17 +26,19 @@
 #define SECTITLE_PARAGRAPH_SPACINGBEFORE    25.0
 // 课文注释字体、字号
 #define NOTES_FONT_NAME         @"HiraKakuProN-W3"
-#define NOTES_FONT_SIZE         16
+#define NOTES_FONT_SIZE         15
+#define NOTES_LINE_SPACING      8
 // 译文字体、字号
-#define TRANSLATION_FONT_NAME   @"HiraKakuProN-W3"
-#define TRANSLATION_FONT_SIZE   16
+#define TRANSLATION_FONT_NAME    @"HiraKakuProN-W3"
+#define TRANSLATION_FONT_SIZE    15
+#define TRANSLATION_LINE_SPACING 8
 
 // 排版
 #define FRAME_X_OFFSET          36
 #define FRAME_Y_OFFSET          36
 
 #define ILLUSTRATION_X_ORIGIN   532
-#define ILLUSTRATION_Y_ORIGIN   594
+#define ILLUSTRATION_Y_ORIGIN   610
 #define ILLUSTRATION_WIDTH      200
 #define ILLUSTRATION_HEIGHT     250
 

@@ -2,7 +2,7 @@
 //  Sentence.h
 //  shadowing
 //
-//  Created by silvon on 12-11-26.
+//  Created by silvon on 12-12-20.
 //  Copyright (c) 2012年 silvon. All rights reserved.
 //
 
@@ -16,7 +16,7 @@
 @property (nonatomic, retain) NSNumber * beginTime;
 @property (nonatomic, retain) NSNumber * endTime;
 @property (nonatomic, retain) NSString * textContent;
+@property (nonatomic, retain) NSNumber * bSel;
 @property (nonatomic, retain) Lesson *witchOfLesson;
-@property (nonatomic, assign) BOOL bSel;
 
 @end
