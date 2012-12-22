@@ -44,13 +44,13 @@
     NSArray * lensons = [appDelegate.managedObjectContext executeFetchRequest:fetchRequest error:nil];
     self.currenLesson = [lensons objectAtIndex:0];
  
-    // 课文被改通知
+    // 添加句子被选观察者
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(refreshCurrenLessonViewString:)
-                                                 name:NSManagedObjectContextObjectsDidChangeNotification
-                                               object:appDelegate.managedObjectContext];
-
-    // 显示
+                                             selector:@selector(currenLessonSelSentenceDidChange:)
+                                                 name:LessonSelSentenceDidChangeNotification
+                                               object:nil];
+    
+       // 显示
     [self lessonViewDisplay];
 }
 
@@ -73,6 +73,7 @@
 - (void)setCurrenLesson:(Lesson *)len
 {
     _currenLesson = len;
+    [self.audioPlayer stop];
     self.audioPlayer = [ [AVAudioPlayer alloc] initWithData: self.currenLesson.mp3 error:NULL];
     [self.audioPlayer prepareToPlay];
     
@@ -91,25 +92,21 @@
                          permittedArrowDirections:UIPopoverArrowDirectionAny
                          animated:YES];
 }
--(void)refreshCurrenLessonViewString:(NSNotification *) notification
+
+-(void)currenLessonSelSentenceDidChange:(NSNotification *) notification
 {
     [self.currenLessonView refreshWithArrstring:[self.currenLesson getAttributedString]];
 }
-- (IBAction)play:(id)sender
+
+- (IBAction)test:(id)sender
 {
-    int nR = arc4random_uniform(8);
-   
+    int nR = arc4random_uniform(19);
     [self.currenLesson setSelectedSentence:nR];
-  
     
-   
- 
-    
-    
-    
-        
-   
-    
+}
+
+- (IBAction)play:(id)sender
+{    
     NSMethodSignature *sgt = [ [self.audioPlayer class] instanceMethodSignatureForSelector:@selector(setCurrentTime:)];
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature: sgt];
     [invocation setTarget: self.audioPlayer];
@@ -155,7 +152,7 @@
 
 - (void)viewDidUnload
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:LessonSelSentenceDidChangeNotification object:nil];
     [self setCurrenLessonView:nil];
     [self setCurrenLesson:nil];
     [self setLessonsPopover:nil];

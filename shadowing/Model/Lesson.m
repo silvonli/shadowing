@@ -20,6 +20,10 @@
 @dynamic img;
 @dynamic sentences;
 
+
+
+NSString * const LessonSelSentenceDidChangeNotification = @"LessonSelSentenceDidChange";
+
 - (NSMutableAttributedString*) getAttributedTitle
 {
     NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@""];
@@ -224,6 +228,8 @@
         
         sen.bSel = [NSNumber numberWithBool:YES];
     }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:LessonSelSentenceDidChangeNotification object:self];
     
 }
 - (NSNumber*)getSelectedSentencesBeginTime

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreText/CoreText.h>
 
-@interface CTView : UIScrollView<UIScrollViewDelegate>
+@interface CTView : UIView
 
 
 - (void) refreshWithArrstring:(NSAttributedString *) string;

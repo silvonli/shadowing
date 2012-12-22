@@ -40,7 +40,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V5T-vK-bJ2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="820" y="971"/>
+            <point key="canvasLocation" x="804" y="1303"/>
         </scene>
         <!--Lesson View Controller-->
         <scene sceneID="tda-hH-VO6">
@@ -56,15 +56,27 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <items>
                                     <barButtonItem title="Item" id="9kA-G9-17w">
-                                        <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <action selector="lessonsListButton:" destination="LnE-GX-0v4" id="Ing-sY-VkY"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="615" style="plain" systemItem="fixedSpace" id="bbh-is-9Gi"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="D9w-6V-Qv5"/>
+                                    <barButtonItem style="plain" id="uwL-aT-4Tb">
+                                        <stepper key="customView" opaque="NO" clipsSubviews="YES" alpha="0.10000000000000014" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" id="Dkx-1p-nzn">
+                                            <rect key="frame" x="337" y="9" width="94" height="27"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        </stepper>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="xI1-Pu-8VA"/>
                                     <barButtonItem title="Item" id="S8F-3P-p1V">
                                         <connections>
                                             <action selector="play:" destination="LnE-GX-0v4" id="0ye-Ib-ebR"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="test" id="w4K-TU-UUQ">
+                                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <action selector="test:" destination="LnE-GX-0v4" id="t32-JK-8tV"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -99,6 +111,7 @@
             <relationships>
                 <relationship kind="action" name="lessonsListButton:"/>
                 <relationship kind="action" name="play:"/>
+                <relationship kind="action" name="test:"/>
                 <relationship kind="outlet" name="currenLessonView" candidateClass="CTView"/>
             </relationships>
         </class>

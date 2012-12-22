@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+NSString * const LessonSelSentenceDidChangeNotification;
 @class Sentence;
 
 @interface Lesson : NSManagedObject
