@@ -21,6 +21,7 @@ NSString * const LessonSelSentenceDidChangeNotification;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * translation;
 @property (nonatomic, retain) NSSet *sentences;
+@property (nonatomic, strong) NSArray *sortedSens;
 @end
 
 @interface Lesson (CoreDataGeneratedAccessors)

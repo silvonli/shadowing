@@ -19,6 +19,7 @@
 @dynamic translation;
 @dynamic img;
 @dynamic sentences;
+@synthesize sortedSens = _sortedSens;
 
 
 
@@ -81,10 +82,8 @@ NSString * const LessonSelSentenceDidChangeNotification = @"LessonSelSentenceDid
         },
     };
     CTParagraphStyleRef aStyle = CTParagraphStyleCreate((const CTParagraphStyleSetting*) &paraStyles, 1);
-    // 按时间排序
-    NSSortDescriptor *timeSort = [NSSortDescriptor sortDescriptorWithKey:@"beginTime" ascending:YES];
-    NSArray *sortedSens = [self.sentences sortedArrayUsingDescriptors:[NSArray arrayWithObject:timeSort]];
-    for (Sentence* sen in sortedSens)
+    
+    for (Sentence* sen in self.sortedSens)
     {
         NSMutableAttributedString *subAttString = [[NSMutableAttributedString alloc] initWithString:sen.textContent];
         
@@ -187,27 +186,34 @@ NSString * const LessonSelSentenceDidChangeNotification = @"LessonSelSentenceDid
     [str appendAttributedString:attTranslation];
     return str;
 }
-
+- (NSArray*) sortedSens
+{
+    if (_sortedSens != nil)
+    {
+        return _sortedSens;
+    }
+    // 按开始时间排序
+    NSSortDescriptor *timeSort = [NSSortDescriptor sortDescriptorWithKey:@"beginTime" ascending:YES];
+    _sortedSens = [self.sentences sortedArrayUsingDescriptors:[NSArray arrayWithObject:timeSort]];
+    return _sortedSens;
+}
 - (void) setSelectedSentence: (NSInteger) index
 {
     if (index<0 || index>self.sentences.count-1)
     {
         return;
     }
-    // 按时间排序
-    NSSortDescriptor *timeSort = [NSSortDescriptor sortDescriptorWithKey:@"beginTime" ascending:YES];
-    NSArray *sortedSens = [self.sentences sortedArrayUsingDescriptors:[NSArray arrayWithObject:timeSort]];
-    
-    Sentence* sen = [sortedSens objectAtIndex:index];
-    Sentence* senPre = index > 0 ? [sortedSens objectAtIndex:index-1] : nil;
-    Sentence* senNext= index < self.sentences.count-1 ? [sortedSens objectAtIndex:index+1] : nil;
+   
+    Sentence* sen = [self.sortedSens objectAtIndex:index];
+    Sentence* senPre = index > 0 ? [self.sortedSens objectAtIndex:index-1] : nil;
+    Sentence* senNext= index < self.sentences.count-1 ? [self.sortedSens objectAtIndex:index+1] : nil;
     
     if (sen.bSel.boolValue == YES)
     {
         // 前后句子都已被选中，则全取消
         if (senPre.bSel.boolValue == YES && senNext.bSel.boolValue == YES)
         {
-            for (Sentence* senTem in sortedSens)
+            for (Sentence* senTem in self.sortedSens)
             {
                 senTem.bSel = [NSNumber numberWithBool:NO];
             }
@@ -220,7 +226,7 @@ NSString * const LessonSelSentenceDidChangeNotification = @"LessonSelSentenceDid
         // 前后句子都没被选中，则先全取消
         if (senPre.bSel.boolValue == NO && senNext.bSel.boolValue == NO)
         {
-            for (Sentence* senTem in sortedSens)
+            for (Sentence* senTem in self.sortedSens)
             {
                 senTem.bSel = [NSNumber numberWithBool:NO];
             }
@@ -234,48 +240,28 @@ NSString * const LessonSelSentenceDidChangeNotification = @"LessonSelSentenceDid
 }
 - (NSNumber*)getSelectedSentencesBeginTime
 {
-    // 按时间排序
-    NSSortDescriptor *timeSort = [NSSortDescriptor sortDescriptorWithKey:@"beginTime" ascending:YES];
-    NSArray *sortedSens = [self.sentences sortedArrayUsingDescriptors:[NSArray arrayWithObject:timeSort]];
-    for (Sentence* sen in sortedSens)
+    for (Sentence* sen in self.sortedSens)
     {
         if (sen.bSel.boolValue)
         {
             return sen.beginTime;
         }
     }
-    return [[sortedSens objectAtIndex:0] valueForKey:@"beginTime"];
+    return [[self.sortedSens objectAtIndex:0] valueForKey:@"beginTime"];
 }
 - (NSNumber*)getSelectedSentencesEndTime
 {
-    // 按结束时间降序排序
-    NSSortDescriptor *timeSort = [NSSortDescriptor sortDescriptorWithKey:@"endTime" ascending:NO];
-    NSArray *sortedSens = [self.sentences sortedArrayUsingDescriptors:[NSArray arrayWithObject:timeSort]];
-    for (Sentence* sen in sortedSens)
+    // 倒着查结束时间
+    for (int i=self.sortedSens.count-1; i>=0; i--)
     {
+        Sentence* sen = [self.sortedSens objectAtIndex:i];
         if (sen.bSel.boolValue)
         {
             return sen.endTime;
         }
     }
-    return [[sortedSens objectAtIndex:0] valueForKey:@"endTime"];
-}
 
-- (NSArray*)getSelectedSentences
-{
-    NSMutableArray * arrRet = [[NSMutableArray alloc] init];
-    // 按时间排序
-    NSSortDescriptor *timeSort = [NSSortDescriptor sortDescriptorWithKey:@"beginTime" ascending:YES];
-    NSArray *sortedSens = [self.sentences sortedArrayUsingDescriptors:[NSArray arrayWithObject:timeSort]];
-    for (int i=1; i<=sortedSens.count; i++)
-    {
-        Sentence* sen = [sortedSens objectAtIndex:i];
-        if (sen.bSel.boolValue)
-        {
-            [arrRet addObject:[NSNumber numberWithInt:i]];
-        }
-    }
-    return arrRet;
+    return [[self.sortedSens lastObject] valueForKey:@"endTime"];
 }
 
 - (NSMutableAttributedString *) getAttributedString
