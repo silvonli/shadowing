@@ -252,9 +252,8 @@ NSString * const LessonSelSentenceDidChangeNotification = @"LessonSelSentenceDid
 - (NSNumber*)getSelectedSentencesEndTime
 {
     // 倒着查结束时间
-    for (int i=self.sortedSens.count-1; i>=0; i--)
+    for (Sentence* sen in [self.sortedSens reverseObjectEnumerator])
     {
-        Sentence* sen = [self.sortedSens objectAtIndex:i];
         if (sen.bSel.boolValue)
         {
             return sen.endTime;
