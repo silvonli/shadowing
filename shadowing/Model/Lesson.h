@@ -21,7 +21,13 @@ NSString * const LessonSelSentenceDidChangeNotification;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * translation;
 @property (nonatomic, retain) NSSet *sentences;
+
 @property (nonatomic, strong) NSArray *sortedSens;
+
+- (NSMutableAttributedString *) getAttributedStringWithSelSens:(NSArray*)selSens;
+- (NSNumber*)getSelectedSentencesBeginTime:(NSInteger) index;
+- (NSNumber*)getSelectedSentencesEndTime:(NSInteger) index;
+
 @end
 
 @interface Lesson (CoreDataGeneratedAccessors)
@@ -31,13 +37,5 @@ NSString * const LessonSelSentenceDidChangeNotification;
 - (void)addSentences:(NSSet *)values;
 - (void)removeSentences:(NSSet *)values;
 
-- (NSMutableAttributedString *) getAttributedTitle;
-- (NSMutableAttributedString *) getAttributedSentences;
-- (NSMutableAttributedString *) getAttributedNotes;
-- (NSMutableAttributedString *) getAttributedTranslation;
-- (NSMutableAttributedString *) getAttributedString;
-- (void) setSelectedSentence: (NSInteger) index;
-- (NSNumber*)getSelectedSentencesBeginTime;
-- (NSNumber*)getSelectedSentencesEndTime;
 
 @end

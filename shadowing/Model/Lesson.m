@@ -10,20 +10,28 @@
 #import "Sentence.h"
 #import "../layoutConstant.h"
 
+@interface Lesson ()
+
+
+- (NSMutableAttributedString *) getAttributedTitle;
+- (NSMutableAttributedString *) getAttributedSentencesWithSel:(NSArray*)selSens;
+- (NSMutableAttributedString *) getAttributedNotes;
+- (NSMutableAttributedString *) getAttributedTranslation;
+- (NSMutableAttributedString *) genAttributedSectionTitle:(NSString *) sec;
+
+@end
 
 @implementation Lesson
 
 @dynamic mp3;
 @dynamic title;
 @dynamic notes;
+@dynamic timeStamp;
 @dynamic translation;
 @dynamic img;
 @dynamic sentences;
 @synthesize sortedSens = _sortedSens;
 
-
-
-NSString * const LessonSelSentenceDidChangeNotification = @"LessonSelSentenceDidChange";
 
 - (NSMutableAttributedString*) getAttributedTitle
 {
@@ -67,7 +75,7 @@ NSString * const LessonSelSentenceDidChangeNotification = @"LessonSelSentenceDid
     return str;
 }
 
-- (NSMutableAttributedString *) getAttributedSentences
+- (NSMutableAttributedString *) getAttributedSentencesWithSel:(NSArray*)selSens
 {
     NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"\n"];
     // 句子内容字体、字号
@@ -95,7 +103,7 @@ NSString * const LessonSelSentenceDidChangeNotification = @"LessonSelSentenceDid
                              value: (__bridge id)aStyle
                              range: NSMakeRange(0, [subAttString length])];
         
-        if (sen.bSel.boolValue)
+        if ([selSens containsObject:sen])
         {
             [subAttString addAttribute: (NSString*)kCTForegroundColorAttributeName
                                  value: (__bridge id)[UIColor redColor].CGColor
@@ -197,77 +205,35 @@ NSString * const LessonSelSentenceDidChangeNotification = @"LessonSelSentenceDid
     _sortedSens = [self.sentences sortedArrayUsingDescriptors:[NSArray arrayWithObject:timeSort]];
     return _sortedSens;
 }
-- (void) setSelectedSentence: (NSInteger) index
+
+- (NSNumber*)getSelectedSentencesBeginTime:(NSInteger) index
 {
     if (index<0 || index>self.sentences.count-1)
     {
-        return;
-    }
-   
-    Sentence* sen = [self.sortedSens objectAtIndex:index];
-    Sentence* senPre = index > 0 ? [self.sortedSens objectAtIndex:index-1] : nil;
-    Sentence* senNext= index < self.sentences.count-1 ? [self.sortedSens objectAtIndex:index+1] : nil;
-    
-    if (sen.bSel.boolValue == YES)
-    {
-        // 前后句子都已被选中，则全取消
-        if (senPre.bSel.boolValue == YES && senNext.bSel.boolValue == YES)
-        {
-            for (Sentence* senTem in self.sortedSens)
-            {
-                senTem.bSel = [NSNumber numberWithBool:NO];
-            }
-        }
-        
-        sen.bSel = [NSNumber numberWithBool:NO];
+        return [[self.sortedSens objectAtIndex:0] valueForKey:@"beginTime"];
     }
     else
     {
-        // 前后句子都没被选中，则先全取消
-        if (senPre.bSel.boolValue == NO && senNext.bSel.boolValue == NO)
-        {
-            for (Sentence* senTem in self.sortedSens)
-            {
-                senTem.bSel = [NSNumber numberWithBool:NO];
-            }
-        }
-        
-        sen.bSel = [NSNumber numberWithBool:YES];
+        return [[self.sortedSens objectAtIndex:index] valueForKey:@"beginTime"];
     }
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:LessonSelSentenceDidChangeNotification object:self];
-    
 }
-- (NSNumber*)getSelectedSentencesBeginTime
+- (NSNumber*)getSelectedSentencesEndTime:(NSInteger) index
 {
-    for (Sentence* sen in self.sortedSens)
+    if (index<0 || index>self.sentences.count-1)
     {
-        if (sen.bSel.boolValue)
-        {
-            return sen.beginTime;
-        }
+         return [[self.sortedSens lastObject] valueForKey:@"endTime"];
     }
-    return [[self.sortedSens objectAtIndex:0] valueForKey:@"beginTime"];
-}
-- (NSNumber*)getSelectedSentencesEndTime
-{
-    // 倒着查结束时间
-    for (Sentence* sen in [self.sortedSens reverseObjectEnumerator])
+    else
     {
-        if (sen.bSel.boolValue)
-        {
-            return sen.endTime;
-        }
+        return [[self.sortedSens objectAtIndex:index] valueForKey:@"endTime"];
     }
-
-    return [[self.sortedSens lastObject] valueForKey:@"endTime"];
 }
 
-- (NSMutableAttributedString *) getAttributedString
+- (NSMutableAttributedString *) getAttributedStringWithSelSens:(NSArray*)selSens
 {
     NSMutableAttributedString* attString = [[NSMutableAttributedString alloc] init];
     [attString appendAttributedString:[self getAttributedTitle]];
-    [attString appendAttributedString:[self getAttributedSentences]];
+    [attString appendAttributedString:[self getAttributedSentencesWithSel:selSens]];
     [attString appendAttributedString:[self getAttributedNotes]];
     [attString appendAttributedString:[self getAttributedTranslation]];
     return attString;

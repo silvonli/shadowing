@@ -13,7 +13,7 @@
 @class LessonListTableViewController;
 
 @protocol LessonListTableViewControllerDelegate <NSObject>
-- (void) lessonListController:(LessonListTableViewController*)listTVCtler didSelectLensson:(Lesson*)selectedLesson;
+- (void) lessonListController:(LessonListTableViewController*)lvc didSelectLensson:(Lesson*)selectedLesson;
 @end
 
 @interface LessonListTableViewController : UITableViewController

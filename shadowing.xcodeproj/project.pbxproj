@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		B51E42951682E7F50085C297 /* Lesson.m in Sources */ = {isa = PBXBuildFile; fileRef = B51E42941682E7F50085C297 /* Lesson.m */; };
+		B52AD22B168B7C6E00063F68 /* SenCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52AD22A168B7C6E00063F68 /* SenCollectionViewController.m */; };
+		B52AD272168C3EBD00063F68 /* SenCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B52AD271168C3EBD00063F68 /* SenCollectionViewCell.m */; };
 		B5596846165F511F008EACD1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5596845165F511F008EACD1 /* UIKit.framework */; };
 		B5596848165F511F008EACD1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5596847165F511F008EACD1 /* Foundation.framework */; };
 		B559684A165F511F008EACD1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5596849165F511F008EACD1 /* CoreGraphics.framework */; };
@@ -30,6 +32,10 @@
 /* Begin PBXFileReference section */
 		B51E42931682E7F50085C297 /* Lesson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Lesson.h; path = Model/Lesson.h; sourceTree = "<group>"; };
 		B51E42941682E7F50085C297 /* Lesson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Lesson.m; path = Model/Lesson.m; sourceTree = "<group>"; };
+		B52AD229168B7C6E00063F68 /* SenCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SenCollectionViewController.h; sourceTree = "<group>"; };
+		B52AD22A168B7C6E00063F68 /* SenCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SenCollectionViewController.m; sourceTree = "<group>"; };
+		B52AD270168C3EBD00063F68 /* SenCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SenCollectionViewCell.h; sourceTree = "<group>"; };
+		B52AD271168C3EBD00063F68 /* SenCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SenCollectionViewCell.m; sourceTree = "<group>"; };
 		B5596841165F511F008EACD1 /* shadowing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = shadowing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5596845165F511F008EACD1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B5596847165F511F008EACD1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -120,6 +126,10 @@
 				B5902F60166EC044000ACC0D /* layoutConstant.h */,
 				B5902F43166BF511000ACC0D /* CTView.h */,
 				B5902F44166BF511000ACC0D /* CTView.m */,
+				B52AD229168B7C6E00063F68 /* SenCollectionViewController.h */,
+				B52AD22A168B7C6E00063F68 /* SenCollectionViewController.m */,
+				B52AD270168C3EBD00063F68 /* SenCollectionViewCell.h */,
+				B52AD271168C3EBD00063F68 /* SenCollectionViewCell.m */,
 			);
 			path = shadowing;
 			sourceTree = "<group>";
@@ -222,6 +232,8 @@
 				B5902F45166BF511000ACC0D /* CTView.m in Sources */,
 				B5A3C416168282F2009EEE77 /* Sentence.m in Sources */,
 				B51E42951682E7F50085C297 /* Lesson.m in Sources */,
+				B52AD22B168B7C6E00063F68 /* SenCollectionViewController.m in Sources */,
+				B52AD272168C3EBD00063F68 /* SenCollectionViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
